@@ -140,7 +140,7 @@ abstract contract AccessControlUpgradeable is Initializable, ContextUpgradeable,
      *
      * May emit a {RoleGranted} event.
      */
-    function grantRole(bytes32 role, address account) public virtual onlyRole(getRoleAdmin(role)) {
+    function grantRole(bytes32 role, address account) internal virtual onlyRole(getRoleAdmin(role)) {
         _grantRole(role, account);
     }
 
@@ -155,7 +155,7 @@ abstract contract AccessControlUpgradeable is Initializable, ContextUpgradeable,
      *
      * May emit a {RoleRevoked} event.
      */
-    function revokeRole(bytes32 role, address account) public virtual onlyRole(getRoleAdmin(role)) {
+    function revokeRole(bytes32 role, address account) internal virtual onlyRole(getRoleAdmin(role)) {
         _revokeRole(role, account);
     }
 
@@ -175,7 +175,7 @@ abstract contract AccessControlUpgradeable is Initializable, ContextUpgradeable,
      *
      * May emit a {RoleRevoked} event.
      */
-    function renounceRole(bytes32 role, address callerConfirmation) public virtual {
+    function renounceRole(bytes32 role, address callerConfirmation) internal virtual {
         if (callerConfirmation != _msgSender()) {
             revert AccessControlBadConfirmation();
         }
